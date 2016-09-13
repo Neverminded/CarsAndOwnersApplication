@@ -1,0 +1,49 @@
+﻿@model MvcApplication5.ViewModels.RequestUsrViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+
+}
+
+<h2 style="text-align:center">Diagnostic page</h2>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link href="~/Content/MyStyles.css" rel="stylesheet" />
+
+<div id="selectedlistperiod">
+    <div class="col-lg-3">
+
+        <select class="form-control" id="sort_order" onchange="GetResponces($(this).val()); return false;">
+            <option>Change time period</option>
+            <option value="1 hour">Last Hour</option>
+            <option value="1 day">Last Day</option>
+            <option value="1 year">Last Year</option>
+        </select>
+    </div>
+</div>
+
+<div id="targetajax">
+
+    @{Html.RenderPartial("RenderChartAndTablePartial");}
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart', 'line'] });
+    function GetResponces(per) {
+
+        $.ajax({
+            url: '@Url.Action("GetData", "Diagnostic")',
+                type: 'POST',
+                data: { period:per },
+                success: function (result) {
+                    $('#targetajax').html(result);
+                }
+                        });
+                    };
+
+</script>

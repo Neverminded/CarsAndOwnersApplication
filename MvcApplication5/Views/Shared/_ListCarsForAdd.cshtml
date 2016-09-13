@@ -1,0 +1,36 @@
+﻿
+<p>
+    Cars owner:
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Mark</td>
+            <td>Model</td>
+            <td>Type</td>
+            <td>Price</td>
+            <td>Year</td>
+
+
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Mark_car</td>
+                <td>@item.Model_car</td>
+                <td>@item.Type_car</td>
+                <td>@item.Price_car</td>
+                <td>@item.Year_of_issue_car.ToShortDateString()</td>
+                <td>@Html.ActionLink("Add", "AddCarPost", "Owner", new { id_owner_many = Model.Id_owner, id_car_many = item.Id_car }, new { @class = "btn btn-success" })</td>
+            </tr>
+                       
+        }
+
+    </tbody>
+</table>
+
+

@@ -1,0 +1,64 @@
+﻿@import url('Bootstrap/css/bootstrap.css');
+
+
+#mycontainer {
+    margin-left: 5%;
+    width: 70%;
+}
+
+
+#firsttable {
+    display:inline-block;
+    margin-right:1%;
+    float:right;
+    font-size: 1.0em;
+    width: 57%;
+  height:100%;
+  background-color:#d0d4e1;
+  border:2px solid #9ea9c2;
+  border-radius:5px;
+}
+
+    #maintable tr td {
+padding: 3px;    
+    }
+
+
+#firsttable table tbody{
+     display: block;
+      height: 250px;
+      width: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+}
+
+#firsttable table thead {
+     display: block;
+     background-color:#6474a9;
+}
+
+#firsttable table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    text-align:center;
+}
+#firsttable table thead th {
+    font-size:0.8em;
+}
+
+#secondtable {
+    width:98%;
+    border:1px solid blue;
+    border-radius:5px;
+    margin-left:1%;
+    margin-top:50px;
+}
+
+#chart_div {
+    width:40%;
+    display:inline-block;
+    height:290px;
+    margin-left:1%;
+}
+

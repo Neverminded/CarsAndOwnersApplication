@@ -1,0 +1,41 @@
+﻿ <table class="table table-hover" id="maintable">
+    <thead style="font-size: 1.3em; color: #0c439b;font-family:'Open Sans', sans-serif">
+        <tr>
+            <td>Mark</td>
+            <td>Model</td>
+            <td>Type</td>
+            <td>Price</td>
+            <td>Year</td>
+            <td>
+                Owners
+            </td>
+            <td colspan="3"> Operations</td>
+           
+        </tr>
+    </thead>
+        <tbody style="color:black">
+    @foreach (var item in Model)
+    {
+        
+        <tr>
+                <td>@item.Mark_car</td>
+                <td>@item.Model_car</td>
+                <td>@item.Type_car</td>
+                <td>@item.Price_car</td>
+                <td>@item.Year_of_issue_car</td>
+            <td>
+                @foreach (var owneritem in item.OwnersCar)
+                {
+                    <span>@owneritem.Name_owner</span> 
+                    <span>@owneritem.Surname_owner</span><br />
+                        
+                }
+            </td>
+            <td>@Html.ActionLink("Details", "DetailsCar", "Cars", new { id = item.Id_car }, new { @class = "btn btn-success" })</td>
+                <td>@Html.ActionLink("Edit", "EditCar", "Cars", new { id = item.Id_car }, new { @class = "btn btn-success" })</td>
+                <td>@Ajax.ActionLink("Delete", "DeleteCar", "Cars", new { id = item.Id_car }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "tablecars" }, new { @class = "btn btn-success" })</td>
+            
+        </tr>
+    }
+         </tbody>
+</table>

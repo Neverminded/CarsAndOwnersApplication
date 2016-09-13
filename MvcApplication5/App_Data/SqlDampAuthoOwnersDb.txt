@@ -1,0 +1,56 @@
+﻿if (select name from sys.databases where name like'authoownersdb' ) != null
+  DROP database authoownersdb
+Create DataBase [authoownersdb]
+go
+
+use authoownersdb
+
+CREATE TABLE [dbo].[Owners] (
+    [Id_owner]        INT IDENTITY(1,1) NOT NULL,
+	[Name_owner]       NVARCHAR (200) NOT NULL,
+	[Surname_owner]       NVARCHAR (200) NOT NULL,
+    [Birsday_owner]      DateTime NOT NULL,
+	[Driving_experience] INT NOT NULL,
+	CONSTRAINT check_Birsday_owner CHECK 
+    (Birsday_owner<getdate()),
+    PRIMARY KEY CLUSTERED ([Id_owner] ASC)
+);
+
+CREATE TABLE [dbo].[Cars] (
+    [Id_car]        INT IDENTITY(1,1) NOT NULL,
+	[Mark_car]       NVARCHAR (200) NOT NULL,
+	[Model_car]       NVARCHAR (200) NOT NULL,
+    [Type_car]       NVARCHAR (10) NOT NULL,
+	CONSTRAINT check_Type_car CHECK 
+    (Type_car IN ('Sedan', 'Truck')),
+	[Price_car] INT NOT NULL,
+	[Year_of_issue_car]  INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id_car] ASC)
+);
+
+
+
+
+CREATE TABLE [dbo].[MySiteMapNodes] (
+    [IdNode]        INT IDENTITY(1,1) NOT NULL,
+	[NameNode]       NVARCHAR (MAX) NOT NULL,
+	[NodeUrl]       NVARCHAR (MAX) NOT NULL,
+    [ParrentNodeId]       int NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdNode] ASC)
+);
+
+CREATE TABLE [dbo].[UsersRequests] (
+    [IdRequest]        INT IDENTITY(1,1) NOT NULL,
+	[PathToPage]       NVARCHAR (200) NOT NULL,
+	[TitlePage]       NVARCHAR (MAX),
+    [DateRequest]       DateTime NOT NULL,
+	[ResponceTime]		Double,
+	[IpUser]       NVARCHAR (20),
+	[Browser]		 NVARCHAR (40),
+	[StatusCode]	 NVARCHAR (5) NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdRequest] ASC)
+);
+
+
+
+go

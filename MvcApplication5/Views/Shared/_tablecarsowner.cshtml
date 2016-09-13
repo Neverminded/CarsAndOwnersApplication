@@ -1,0 +1,75 @@
+﻿@model  MvcApplication5.Models.EditOwnerViewModel
+<table class="table table-hover col-sm-4" id="unassigntable" style="width:50%">
+    <caption style="font-size: 1.3em; color: #0c439b; font-family: 'Open Sans', sans-serif;text-align:center">List unassigned cars for owner</caption> 
+    <thead style="font-size: 1.3em; color: #0c439b; font-family: 'Open Sans', sans-serif">
+        <tr>
+            <td>Mark</td>
+            <td>Model</td>
+            <td>Type</td>
+            <td>Price</td>
+            <td>Year</td>
+            <td>Operation</td>
+
+        </tr>
+    </thead>
+    <tbody id="unassigntbody" style="color: black">
+        @foreach (var item in Model.Unassigned_cars)
+        {
+            <tr>
+                <td>@item.Mark_car</td>
+                <td>@item.Model_car</td>
+                <td>@item.Type_car</td>
+                <td>@item.Price_car</td>
+                <td>@item.Year_of_issue_car</td>
+                <td>@Ajax.ActionLink("Add", "AddCarToOwner", "Owner", new { id_owner = Model.Owner.Id_owner, id_car = item.Id_car },
+                                                           new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "tablecontainer" },
+                                                                                                         new { @class = "btn btn-warning" })</td>
+            </tr>
+                       
+        }
+
+    </tbody>
+
+
+
+</table>
+
+
+
+<table class="table table-hover col-sm-8" style="width:50%;background-color:#1f1338">
+    <caption style="font-size: 1.3em; color: #0c439b; font-family: 'Open Sans', sans-serif;text-align:center"> List Cars for owner:</caption>
+    <thead style="font-size: 1.3em; color: #0c439b; font-family: 'Open Sans', sans-serif">
+        <tr>
+            <td>Mark</td>
+            <td>Model</td>
+            <td>Type</td>
+            <td>Price</td>
+            <td>Year</td>
+             <td>Operation</td>
+        </tr>
+    </thead>
+
+
+
+
+
+    <tbody id="tablebody" style="color: #8778a1">
+        @foreach (var item in Model.Owner.CarsOwner)
+        {
+            <tr>
+                <td>@item.Mark_car</td>
+                <td>@item.Model_car</td>
+                <td>@item.Type_car</td>
+                <td>@item.Price_car</td>
+                <td>@item.Year_of_issue_car</td>
+                <td>@Ajax.ActionLink("Delete", "DeleteCarToOwner", "Owner", new { id_owner = Model.Owner.Id_owner, id_car = item.Id_car },
+                                    new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "tablecontainer" }, 
+                                                    new { @class = "btn btn-success" })</td>
+            </tr>
+                       
+        }
+
+    </tbody>
+</table>
+
+

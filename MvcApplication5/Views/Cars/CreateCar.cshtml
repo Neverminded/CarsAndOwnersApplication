@@ -1,0 +1,102 @@
+﻿@model MvcApplication5.Models.Car
+@using DomainModel.SQLSiteMapPath
+@{
+    ViewBag.Title = "CreateCar";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+
+
+
+<div id="mycontainer">
+    <h2 style="color:white;margin-left:40%;margin-top:100px"> Create new car</h2>
+   
+@using (Html.BeginForm("CreateCar", "Cars", FormMethod.Post, new {@class="form-horizontal", style="margin-top:50px;"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+         @Html.LabelFor(model => model.Mark_car, new {@class="control-label col-sm-2" })
+      
+	  <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.Mark_car, new {@class="form-control", placeholder="Mark" })
+            @Html.ValidationMessageFor(model => model.Mark_car)
+         
+	  </div>
+
+      
+   </div>
+   <div class="form-group">
+        @Html.LabelFor(model => model.Model_car, new {@class="control-label col-sm-2" })
+      
+	  <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.Model_car, new {@class="form-control", placeholder="Model" })
+            @Html.ValidationMessageFor(model => model.Model_car)
+         
+	  </div>
+   </div>
+   <div class="form-group">
+         @Html.LabelFor(model => model.Year_of_issue_car, new {@class="control-label col-sm-2" })
+      
+
+     
+	  <div class="col-sm-10" >
+           @Html.TextBoxFor(model => model.Year_of_issue_car, new {@class="form-control", placeholder="Date of issue" })
+            @Html.ValidationMessageFor(model => model.Year_of_issue_car)
+         
+	  </div>
+
+
+   </div>
+
+        <div class="form-group">
+         @Html.LabelFor(model => model.Price_car, new {@class="control-label col-sm-2" })
+      
+	  <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.Price_car, new {@class="form-control", placeholder="Price" })
+            @Html.ValidationMessageFor(model => model.Price_car)
+         
+	  </div>
+   </div>
+    
+    <div class="form-group">
+         @Html.LabelFor(model => model.Type_car, new {@class="control-label col-sm-2" })
+      
+
+     
+	  <div class="col-sm-10" >
+         
+          @Html.DropDownListFor(x => x.Type_car, new SelectList(new[] { "Sedan", "Truck" }), new {@class="form-control", placeholder="Type" })
+            @Html.ValidationMessageFor(model => model.Type_car)
+         
+	  </div>
+
+
+   </div>
+    
+        
+    <div class="form-group">
+      <div class="col-sm-offset-6 col-sm-10">
+         <input type="submit" class="btn btn-warning"  value="Create car" />
+      </div>
+   </div>
+
+       
+    
+}
+   
+      
+       
+ 
+
+   
+
+    <div>
+    @Html.ActionLink("Back to List", "GetCars", null, new  { @class = "btn btn-success" })
+</div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

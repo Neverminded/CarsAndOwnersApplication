@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <title>TestMeth</title>
+</head>
+<body>
+    <div>
+        <div id="chart_div"></div>
+        
+        
+      
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+  
+    $.getJSON('@Url.Action("GetData","Diagnostic")', null,
+                                              function (result) { alert('esfwe'); });
+
+
+
+        </script>

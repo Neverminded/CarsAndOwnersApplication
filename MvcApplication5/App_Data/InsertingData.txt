@@ -1,0 +1,41 @@
+﻿use authoownersdb
+INSERT INTO dbo.Owners (Name_owner,Surname_owner,Birsday_owner,Driving_experience) 
+    VALUES ('Aleksandr', 'Shevchenko','05.10.1978',4);
+	INSERT INTO dbo.Owners (Name_owner,Surname_owner,Birsday_owner,Driving_experience) 
+    VALUES ('Aleksey', 'Frolov','08.03.1987',10);
+	INSERT INTO dbo.Owners (Name_owner,Surname_owner,Birsday_owner,Driving_experience) 
+    VALUES ('Igor', 'Vorobiev','06.09.1988',3);
+	INSERT INTO dbo.Owners (Name_owner,Surname_owner,Birsday_owner,Driving_experience) 
+    VALUES ('Sergey', 'Vichnevski','07.07.1990',5);
+	INSERT INTO dbo.Owners (Name_owner,Surname_owner,Birsday_owner,Driving_experience) 
+    VALUES ('Garik', 'Kharlamov','12.11.1977',14);
+	INSERT INTO dbo.Owners (Name_owner,Surname_owner,Birsday_owner,Driving_experience) 
+    VALUES ('Boris', 'Kovalenko','11.12.1976',15);
+	
+
+	
+
+INSERT INTO dbo.Cars (Mark_car,Model_car,Type_car,Price_car,Year_of_issue_car) 
+    VALUES ('Mitsubishi', 'Evolution IX','Sedan',25000,'2010');
+	INSERT INTO dbo.Cars (Mark_car,Model_car,Type_car,Price_car,Year_of_issue_car) 
+    VALUES ('Subaru', 'Impreza WRX','Sedan',23000,'2011');
+	INSERT INTO dbo.Cars (Mark_car,Model_car,Type_car,Price_car,Year_of_issue_car) 
+    VALUES ('Nissan', 'Skyline GT','Sedan',27000,'2010');
+	INSERT INTO dbo.Cars (Mark_car,Model_car,Type_car,Price_car,Year_of_issue_car) 
+    VALUES ('Honda', 'Integra','Sedan',20000,'2000');
+	INSERT INTO dbo.Cars (Mark_car,Model_car,Type_car,Price_car,Year_of_issue_car) 
+    VALUES ('Porche', '911 Turbo','Sedan',29000,'2005');
+	
+	INSERT INTO dbo.OwnerCars (Id_car,Id_owner) 
+    VALUES (1, 1);
+	INSERT INTO dbo.OwnerCars (Id_car,Id_owner) 
+    VALUES (2, 2);
+	INSERT INTO dbo.OwnerCars (Id_car,Id_owner) 
+    VALUES (3, 3);
+	INSERT INTO dbo.OwnerCars (Id_car,Id_owner) 
+    VALUES (3, 4);
+	INSERT INTO dbo.OwnerCars (Id_car,Id_owner) 
+    VALUES (4, 4);
+	INSERT INTO dbo.OwnerCars (Id_car,Id_owner) 
+    VALUES (1, 5);
+	

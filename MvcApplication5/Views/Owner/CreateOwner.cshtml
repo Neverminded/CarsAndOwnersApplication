@@ -1,0 +1,76 @@
+﻿@model MvcApplication5.Models.Owner
+
+@{
+    ViewBag.Title = "CreateOwner";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+<div id="mycontainer">
+    <h2 style="color:white;margin-left:40%;margin-top:100px"> Create new owner</h2>
+
+@using (Html.BeginForm("CreateOwner", "Owner", FormMethod.Post, new {@class="form-horizontal", style="margin-top:50px;"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+         @Html.LabelFor(model => model.Surname_owner, new {@class="control-label col-sm-2" })
+      
+	  <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.Surname_owner, new {@class="form-control", placeholder="Surname" })
+            @Html.ValidationMessageFor(model => model.Surname_owner)
+         
+	  </div>
+   </div>
+   <div class="form-group">
+        @Html.LabelFor(model => model.Name_owner, new {@class="control-label col-sm-2" })
+      
+	  <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.Name_owner, new {@class="form-control", placeholder="Name" })
+            @Html.ValidationMessageFor(model => model.Name_owner)
+         
+	  </div>
+   </div>
+   <div class="form-group">
+         @Html.LabelFor(model => model.Birsday_owner, new {@class="control-label col-sm-2" })
+      
+
+     
+	  <div class="col-sm-10" >
+           @Html.TextBoxFor(model => model.Birsday_owner, new {@class="form-control", placeholder="Date birsday", type="date" })
+            @Html.ValidationMessageFor(model => model.Birsday_owner)
+         
+	  </div>
+
+
+   </div>
+
+        <div class="form-group">
+         @Html.LabelFor(model => model.Driving_experience, new {@class="control-label col-sm-2" })
+      
+	  <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.Driving_experience, new {@class="form-control", placeholder="Expirience" })
+            @Html.ValidationMessageFor(model => model.Driving_experience)
+         
+	  </div>
+   </div>
+        
+    <div class="form-group">
+      <div class="col-sm-offset-6 col-sm-10">
+         <input type="submit" class="btn btn-warning"  value="Create owner" />
+      </div>
+   </div>
+
+       
+    
+}
+
+    <div>
+    @Html.ActionLink("Back to List", "GetOwners", null, new  { @class = "btn btn-success" })
+</div>
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

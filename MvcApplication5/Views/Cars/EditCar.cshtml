@@ -1,0 +1,103 @@
+﻿@model MvcApplication5.Models.Car
+
+@{
+    ViewBag.Title = "EditCar";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+
+<h2 class="headertitle">Edit concrete car</h2>
+
+@using (Html.BeginForm("EditCar","Cars",FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend style="width:84%;margin-left:5%">Car: @Model.Mark_car @Model.Model_car</legend>
+
+        @Html.HiddenFor(model => model.Id_car)
+
+
+
+        <div class="detailsdiv">
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Mark_car): </p>
+         <div class="col-sm-8">@Html.TextBoxFor(model => model.Mark_car, new {@class="form-control",style="width:80%;display:inline-block" })</div>
+            @Html.ValidationMessageFor(model => model.Mark_car)
+
+    </div>
+         <div class="detailsdiv">
+
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Model_car): </p>
+        <div class="col-sm-8">@Html.TextBoxFor(model => model.Model_car, new {@class="form-control",style="width:80%;display:inline-block" })</div> 
+            @Html.ValidationMessageFor(model => model.Model_car)
+
+    </div>
+        <div class="detailsdiv">
+
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Type_car): </p>
+        <div class="col-sm-8">@Html.DropDownListFor(x => x.Type_car, new SelectList(new[] { "Sedan", "Truck" }), new {@class="form-control", style="width:80%;display:inline-block" })</div>
+            @Html.ValidationMessageFor(model => model.Type_car)
+
+    </div>
+
+       <div class="detailsdiv">
+
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Price_car): </p>
+        <div class="col-sm-8"> @Html.TextBoxFor(model => model.Price_car, new {@class="form-control",style="width:80%;display:inline-block" })</div>
+            @Html.ValidationMessageFor(model => model.Price_car)
+
+    </div>
+
+        <div class="detailsdiv">
+
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Year_of_issue_car): </p>
+        <div class="col-sm-8"> @Html.TextBoxFor(model => model.Year_of_issue_car, new {@class="form-control",style="width:80%;display:inline-block"})</div>
+            @Html.ValidationMessageFor(model => model.Year_of_issue_car)
+
+    </div>
+
+      
+
+      
+    </fieldset>
+    
+     <p style="margin-left:2%;margin-top:30px;">
+    <input type="submit" value="Save car" class="btn btn-warning" /> |
+    @Html.ActionLink("Back to List", "GetCars", null, new { @class="btn btn-success"})
+
+</p>
+}
+
+<h2 class="headertitle" style="margin-top:50px">
+   List Oweners for car:
+</h2>
+<table class="table table-hover" id="maintable">
+    <thead style="font-size: 1.3em; color: #0c439b;font-family:'Open Sans', sans-serif">
+        <tr>
+            <td>Surname</td>
+            <td>Name</td>
+            <td>Date birsday</td>
+            <td>Driving expirience</td>
+            
+        </tr>
+
+    </thead>
+    <tbody id="tablebody" style="color:black">
+        @foreach (var item in Model.OwnersCar)
+        {
+            <tr>
+                <td>@item.Surname_owner</td>
+                <td>@item.Name_owner</td>
+                <td>@item.Birsday_owner.ToShortDateString()</td>
+                <td>@item.Driving_experience</td>
+                </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

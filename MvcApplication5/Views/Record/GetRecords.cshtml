@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DomainModel.Entities.Record>
+
+@{
+    ViewBag.Title = "GetRecords";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+
+<h2 style="text-align:center">Site Records</h2>
+
+<p style="margin-left:5%;">
+
+    @Html.ActionLink("Create New", "CreateRecord",null,new {@class="btn btn-primary"})
+</p>
+
+
+@foreach (var item in Model) {
+   <div style=" text-align:center;">
+       <h4>
+           @Html.ActionLink(item.Title_record, "DetailsRecord", new { id = item.Id_record }, new { style = "color:blue;" })           
+       </h4>
+   </div>
+   <div style="margin-left:43%; width:200px;border-bottom:2px solid blue;">
+
+   </div>
+      
+    
+}
+

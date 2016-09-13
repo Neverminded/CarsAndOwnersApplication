@@ -1,0 +1,47 @@
+﻿@model DomainModel.Entities.Record
+
+@{
+    ViewBag.Title = "CreateRecord";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+
+<h2>CreateRecord</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Record</legend>
+
+        <div class="editor-label" style="margin-left:5%;">
+            @Html.LabelFor(model => model.Title_record)
+        </div>
+        <div class="editor-field" style="margin-left:5%;width:60%;">
+           <input type="text" class="form-control" name="Title_record" />
+            @Html.ValidationMessageFor(model => model.Title_record)
+        </div>
+
+        <div class="editor-label" style="margin-left:5%;">
+            @Html.LabelFor(model => model.Text_record)
+        </div>
+        <div class="editor-field" style="margin-left:5%; width:60%;">
+           <textarea class="form-control" cols="10" rows="5" name="Text_record"></textarea>
+            @Html.ValidationMessageFor(model => model.Text_record)
+        </div>
+
+        
+
+        <p style="margin-left:5%;margin-top:10px;">
+            <input class="btn btn-primary" type="submit" value="Create record" />
+        </p>
+    </fieldset>
+}
+
+<div style="margin-left:5%;">
+    @Html.ActionLink("Back to List", "GetRecords")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

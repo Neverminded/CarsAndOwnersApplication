@@ -1,0 +1,183 @@
+﻿@using DomainModel.Entities;
+
+<div id="chart_div"></div>
+
+<div id="firsttable">
+    <table class="table table-hover">
+        <caption style="text-align:center;color:white; background-color:#6474a9;">
+            Request users
+        </caption>
+        <thead>
+            <tr style="width:100%">
+                <th>
+                    <span>Date </span>
+                </th>
+                <th>
+                    <span>Path</span>
+                </th>
+                <th>
+                    <span>Responce time </span>
+                </th>
+                <th>
+                    <span>Status code </span>
+                </th>
+                <th>
+                    <span>Browser</span>
+                </th>
+                <th>
+                    <span>Ip user </span>
+                </th>
+                <th>
+                    <span>Title page </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+
+            @foreach (var item in ((IEnumerable<RequestUser>)ViewBag.collectionvalues).Reverse<RequestUser>())
+            {
+
+                <tr>
+                    <td>
+                        @item.DateRequest
+                    </td>
+                    <td>
+                        @item.PathToPage
+                    </td>
+                    <td>
+                        @item.ResponceTime
+                    </td>
+                    <td>
+                        @item.StatusCode
+                    </td>
+                    <td>
+                        @item.Browser
+                    </td>
+
+                    <td>
+                        @item.IpUser
+                    </td>
+                    <td>
+                        @item.TitlePage
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+</div>
+<div style="display:inline-block;margin-left:1%;">
+    <label>The minimum server response time:@Model.MinResponce.ResponceTime</label><br />
+    <label>The maximum server response time:@Model.MaxResponce.ResponceTime</label>
+</div>
+<div id="secondtable">
+    <table class="table table-hover">
+        <caption style="text-align:center;color:white; background-color:#ee622d;">
+            Slowest server responses
+        </caption>
+        <thead>
+            <tr>
+                <th>
+                    <span>Date </span>
+                </th>
+                <th>
+                    <span>Path</span>
+                </th>
+                <th>
+                    <span>Responce time </span>
+                </th>
+                <th>
+                    <span>Status code </span>
+                </th>
+                <th>
+                    <span>Browser</span>
+                </th>
+                <th>
+                    <span>Ip user </span>
+                </th>
+                <th>
+                    <span>Title page </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ((MvcApplication5.ViewModels.RequestUsrViewModel)Model).TopSlowestPages)
+            {
+
+                <tr>
+                    <td>
+                        @item.DateRequest
+                    </td>
+                    <td>
+                        @item.PathToPage
+                    </td>
+                    <td>
+                        @item.ResponceTime
+                    </td>
+                    <td>
+                        @item.StatusCode
+                    </td>
+                    <td>
+                        @item.Browser
+                    </td>
+
+                    <td>
+                        @item.IpUser
+                    </td>
+                    <td>
+                        @item.TitlePage
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+    google.charts.setOnLoadCallback(drawBasic);
+    function drawBasic() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Date');
+        data.addColumn('number', 'Time');
+        var jsonData = JSON.parse('@Html.Raw(ViewData["responcecollection"])');
+        $.each(jsonData, function (index, c) {
+            var t = new Date();
+            var formatted = t.toDateString(c.DateRequest);
+            data.addRow(
+              [formatted, c.ResponceTime]
+            );
+        });
+
+        var options = {
+            title: 'Responces from server',
+            curveType: 'function',
+            hAxis: {
+                title: 'Date responce'
+            },
+            vAxis: {
+                title: 'Time responce'
+            },
+            legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+    }
+
+</script>

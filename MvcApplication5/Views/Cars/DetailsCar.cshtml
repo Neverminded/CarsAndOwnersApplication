@@ -1,0 +1,88 @@
+﻿@model MvcApplication5.Models.Car
+
+@{
+    ViewBag.Title = "DetailsCar";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+
+<h2 class="headertitle">Details concrete car</h2>
+
+<div class="maindetails">
+
+    <fieldset>
+    <legend style="width:84%">Car: @Model.Mark_car @Model.Model_car</legend>
+
+         @Html.HiddenFor(model => model.Id_car)
+    <div class="details-field col-sm-2">
+
+        <p style="display:inline-block">@Html.DisplayNameFor(model => model.Mark_car): </p>
+         <div class="label label-info">@Model.Mark_car</div>
+
+    </div>
+
+     <div class="details-field col-sm-2">
+
+        <p style="display:inline-block">@Html.DisplayNameFor(model => model.Model_car): </p>
+         <div class="label label-info">@Model.Model_car</div>
+
+    </div>
+
+     <div class="details-field col-sm-2">
+
+        <p style="display:inline-block">@Html.DisplayNameFor(model => model.Price_car): </p>
+         <div class="label label-info">@Model.Price_car</div>
+
+    </div>
+    
+      <div class="details-field col-sm-2">
+
+        <p style="display:inline-block">@Html.DisplayNameFor(model => model.Type_car): </p>
+        <div class="label label-info">@Model.Type_car</div>
+
+    </div>
+   
+     <div class="details-field col-sm-2">
+
+        <p style="display:inline-block">@Html.DisplayNameFor(model => model.Year_of_issue_car): </p>
+        <div class="label label-info">@Model.Year_of_issue_car</div>
+
+    </div>
+
+
+
+  
+</fieldset>
+</div>
+
+
+<h2 class="headertitle"> List owners for this car: </h2>
+<table class="table table-hover" id="maintable">
+    <thead style="font-size: 1.3em; color: #0c439b;font-family:'Open Sans', sans-serif">
+        <tr>
+            <td>Surname</td>
+            <td>Name</td>
+            <td>Date birsday</td>
+            <td>Driving expirience</td>
+
+        </tr>
+
+    </thead>
+    <tbody id="tablebody" style="color:black">
+        @foreach (var item in Model.OwnersCar)
+        {
+            <tr>
+                <td>@item.Surname_owner</td>
+                <td>@item.Name_owner</td>
+                <td>@item.Birsday_owner.ToShortDateString()</td>
+                <td>@item.Driving_experience</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<p style="margin-left:5%;margin-top:30px;">
+    @Html.ActionLink("Edit", "EditCar", "Cars", new { id = Model.Id_car }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Back to List", "GetCars", "Cars", new { @class = "btn btn-warning" })
+</p>
+

@@ -1,0 +1,27 @@
+﻿<table class="table table-hover" id="maintable">
+    <thead style="font-size: 1.3em; color: #0c439b;font-family:'Open Sans', sans-serif">
+        <tr>
+            <td>Surname</td>
+            <td>Name</td>
+            <td>Date birsday</td>
+            <td>Driving expirience</td>
+            <td colspan="3">Operations</td>
+        </tr>
+
+    </thead>
+    <tbody id="tablebody" style="color:black">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Surname_owner</td>
+                <td>@item.Name_owner</td>
+                <td>@item.Birsday_owner.ToShortDateString()</td>
+                <td>@item.Driving_experience</td>
+                <td>@Html.ActionLink("Details", "DetailsOwner", "Owner", new { id = item.Id_owner }, new { @class = "btn btn-success" })</td>
+                <td>@Html.ActionLink("Edit", "EditOwner", "Owner", new { id = item.Id_owner }, new { @class = "btn btn-success" })</td>
+                <td>@Ajax.ActionLink("Delete", "DeleteOwner", "Owner", new { id = item.Id_owner }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "targetupdate" }, new { @class = "btn btn-success" })</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

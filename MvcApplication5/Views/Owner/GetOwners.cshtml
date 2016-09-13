@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MvcApplication5.Models.Owner>
+
+@{
+    ViewBag.Title = "GetOwners";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+  
+}
+<h2 class="headertitle">List All Owners in Application </h2>
+<div id="addblock">
+@Html.ActionLink("Add new owner","CreateOwner",null,new { @class="btn btn-warning"})
+</div>
+
+<div id="targetupdate">
+@Html.Partial("_tablebody")
+</div>
+
+   
+
+ 

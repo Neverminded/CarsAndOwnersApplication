@@ -1,0 +1,77 @@
+﻿@model MvcApplication5.Models.EditOwnerViewModel
+@{
+    ViewBag.Title = "EditOwner";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+
+<h2 class="headertitle">Edit concrete owner</h2>
+
+@using (Html.BeginForm("EditOwner","Owner",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend style="width:84%;margin-left:5%">@Model.Owner.Name_owner @Model.Owner.Surname_owner</legend>
+   
+        @Html.HiddenFor(model => model.Owner.Id_owner)
+
+        <div class="detailsdiv">
+
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Owner.Name_owner): </p>
+         <div class="col-sm-8">@Html.TextBoxFor(model => model.Owner.Name_owner, new {@class="form-control",style="width:80%;display:inline-block" })</div>
+            @Html.ValidationMessageFor(model => model.Owner.Name_owner)
+
+    </div>
+
+
+
+   <div class="detailsdiv">
+
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Owner.Surname_owner): </p>
+         <div class="col-sm-8">@Html.TextBoxFor(model => model.Owner.Surname_owner, new {@class="form-control",style="width:80%;display:inline-block" })</div>
+            @Html.ValidationMessageFor(model => model.Owner.Surname_owner)
+
+    </div>
+
+       <div class="detailsdiv">
+
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Owner.Birsday_owner): </p>
+         <div class="col-sm-8">@Html.TextBoxFor(model => model.Owner.Birsday_owner, new {@class="form-control",style="width:80%;display:inline-block",type="date"})</div>
+            @Html.ValidationMessageFor(model => model.Owner.Birsday_owner)
+
+    </div>
+       <div class="detailsdiv">
+
+        <p class="details-field col-sm-3">@Html.DisplayNameFor(model => model.Owner.Driving_experience): </p>
+         <div class="col-sm-8">@Html.TextBoxFor(model => model.Owner.Driving_experience, new {@class="form-control",style="width:80%;display:inline-block",type="number" })</div>
+            @Html.ValidationMessageFor(model => model.Owner.Driving_experience)
+
+    </div>
+
+      
+
+
+       
+     
+   
+
+    </fieldset>
+     <p style="margin-left:2%;margin-top:30px;">
+    <input type="submit" value="Save owner" class="btn btn-warning" /> |
+    @Html.ActionLink("Back to List", "GetOwners", null, new { @class="btn btn-success"})
+</p>
+    
+}
+
+
+ <div id="tablecontainer" style="width:100%">
+             @Html.Partial("_tablecarsowner")
+        </div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

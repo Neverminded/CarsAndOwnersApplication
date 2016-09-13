@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MvcApplication5.Models.Car>
+
+@{
+    ViewBag.Title = "AddCar";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+
+<h2>AddCar</h2>
+<div id="tablecontainer">
+@Html.Partial("_ListCarsForAdd")
+</div>
+
